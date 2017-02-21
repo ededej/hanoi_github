@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-//implement Disc:move(destination: Tower) with all its check (no bigger disc on smaller).
-// Take, adjust, or write two scenarios –
-// Implement the corresponding two unit tests.
 public class HanoiTest {
     Player john;
 

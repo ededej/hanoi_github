@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Player {
     private String name;
-    private List<Disk> disks= new ArrayList<Disk>();
+    private List<Disk> disks= new ArrayList<Disk>(); // has a list of disks for the game
     private int size=0; //keeps track of how many disks are there and number them from the biggest to the smallest
-    private List<Pole> listOfPoles= new ArrayList<Pole>();
+    private List<Pole> listOfPoles= new ArrayList<Pole>(); // has a list of poles for the game
 
     public List<Pole> getListOfPoles() {
         return listOfPoles;
@@ -40,6 +40,7 @@ public class Player {
         Disk d= new Disk();
         d.setColor(color);
         d.setPole(poleNumber);
+        // if disks contain the new disk than dont added return false
         if (disks.contains(d)){
             return false;
         }else {
@@ -59,11 +60,15 @@ public class Player {
                     "Pole number must be integer bigger than 0!");
         }
         Disk movingDisk= findDisk(diskColor);
+        if(movingDisk==null){// if disk not on the list than don't do anything else return false
+            return false;
+        }
         int sizeOfDisk= movingDisk.getSize();
         Pole pole= listOfPoles.get(poleNumber-1);
         Set<Disk> setOfDiskOnPole= pole.getSetOfDisk();
         boolean check=false;
         if (setOfDiskOnPole.size()!=0) {
+            // checking if the pole can accept the moving disk
             for (Disk d : setOfDiskOnPole) {
                 if (d.getSize() < sizeOfDisk) {
                     movingDisk.setPole(poleNumber);
@@ -91,6 +96,7 @@ public class Player {
         return this;
     }
 
+    //checks if the disk on list of disk if not return null
     public Disk findDisk(String diskColor) {
 
         for(int i=0; i<disks.size();i++){
