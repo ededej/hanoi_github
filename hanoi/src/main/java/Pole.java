@@ -2,6 +2,7 @@ import java.util.*;
 
 /**
  * Created by Shelby on 2/17/17.
+ * Fatih
  */
 public class Pole {
     private Disk disk;
