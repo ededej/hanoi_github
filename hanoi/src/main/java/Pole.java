@@ -10,6 +10,7 @@ public class Pole {
     private Set<Disk> setOfDisk= new HashSet<Disk>();
 
     public Set<Disk> getSetOfDisk() {
+
         return setOfDisk;
     }
 
@@ -24,6 +25,7 @@ public class Pole {
 
 
     public Disk getDisk() {
+
         return disk;
     }
 
