@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Created by Shelby on 2/17/17.
- * Fatih
+ * FA 03-07-2017
  */
 public class Pole {
     private Disk disk;
@@ -37,6 +37,7 @@ public class Pole {
     }
 
     public int getPoleNumber() {
+        // return pole number
         return poleNumber;
     }
 
@@ -50,6 +51,7 @@ public class Pole {
     }
 
     public boolean addDisk(Disk d){
+        // return the set of disks
         return setOfDisk.add(d);
     }
 
