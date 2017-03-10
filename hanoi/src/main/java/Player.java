@@ -26,6 +26,7 @@ public class Player {
     }
 
     public Set<Pole> getPoles() {
+        //return an immutable version of this.poles.
         return Collections.unmodifiableSet(poles);
     }
 
