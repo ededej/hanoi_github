@@ -44,6 +44,7 @@ public class HanoiTest {
         dRed.setPole(one);
         one.addDisk(dRed);
         dRed.setOnTop(dBlu);
+
         dYellow=new Disk();
         dYellow.setColor("yellow");
         dYellow.setPole(one);

@@ -6,28 +6,28 @@ import java.util.Set;
  */
 public class Disk {
     private Pole pole;
-    private int size;
     private String color;
     private Disk onTop;
 
-    public Disk getOnTop() {
-        return onTop;
+    //setPole sets the pole that a disk is on
+    public void setPole(Pole pole) {
+        if(this.pole!=pole){
+            Pole oldPole= this.pole;
+            this.pole=pole;
+            if(oldPole!= null){
+                oldPole.removeDisk(this);
+            }
+            if(pole !=null){
+                pole.addDisk(this);
+            }
+        }
+    }
+    public Pole getPole() {
+        return pole;
     }
 
-    public void setOnTop(Disk onTop) {
-        this.onTop = onTop;
-    }
-
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    //Disc:move(destination: Tower)
+    //move(destination: Tower) move the disk into the destiantion tower by doing all
+    // the necesary checks before setting to the new Pole
     public boolean move(Pole destinationPole){
         Set<Disk> disksOnDestination= destinationPole.getDisks();
         boolean moved=false;
@@ -51,20 +51,23 @@ public class Disk {
         return moved;
     }
 
-    public void setPole(Pole pole) {
-        if(this.pole!=pole){
-            Pole oldPole= this.pole;
-            this.pole=pole;
-            if(oldPole!= null){
-                oldPole.removeDisk(this);
-            }
-            if(pole !=null){
-                pole.addDisk(this);
-            }
-        }
-    }
-    public Pole getPole() {
-        return pole;
+
+    public Disk getOnTop() {
+        return onTop;
     }
 
+    public void setOnTop(Disk onTop) {
+        if(this.onTop!=onTop){
+            this.onTop=onTop;
+        }
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

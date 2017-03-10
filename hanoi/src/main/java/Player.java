@@ -7,6 +7,7 @@ public class Player {
     private Set<Pole> poles= new LinkedHashSet<Pole>();
     private String name;
 
+    // addPole adds the pole in set of poles that each player has
     public boolean addPole(Pole pole) {
         boolean checkDisk= poles.add(pole);
         if(checkDisk && pole!=null){
@@ -14,6 +15,8 @@ public class Player {
         }
         return checkDisk;
     }
+
+    //removes the poles from the set of poles that player has.
     public boolean removePole(Pole pole) {
         boolean checkDisk= poles.add(pole);
         if(checkDisk && pole!=null){
@@ -26,11 +29,6 @@ public class Player {
         return Collections.unmodifiableSet(poles);
     }
 
-    public void setName(String name)
-    {
-        this.name=name;
-    }
-
 
     //this method just calls the move() method of the Disk class when player move the disk to a new pole
     public boolean moveDiskToPole(Disk disk, Pole poleDestination) {
@@ -38,4 +36,9 @@ public class Player {
         check=disk.move(poleDestination);
         return check;
     }
+    public void setName(String name)
+    {
+        this.name=name;
+    }
+
 }
