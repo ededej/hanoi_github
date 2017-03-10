@@ -2,59 +2,44 @@ import java.util.*;
 
 /**
  * Created by Shelby on 2/17/17.
- * FA 03-07-2017
  */
 public class Pole {
-    private Disk disk;
-    private int poleNumber;
-    private Set<Disk> setOfDisk= new HashSet<Disk>();
 
-    public Set<Disk> getSetOfDisk() {
-
-        return setOfDisk;
-    }
-
-    public Pole setSetOfDisk(Set<Disk> setOfDisk) {
-        if(setOfDisk==null){
-            throw new IllegalArgumentException(
-                    "Set of disks must not be null!");
+    private Set<Disk> disks= new LinkedHashSet<Disk>();
+    private Player player;
+    public boolean addDisk(Disk disk) {
+        boolean checkDisk = disks.add(disk);
+        if (checkDisk && disk != null) {
+            disk.setPole(this);
         }
-        this.setOfDisk = setOfDisk;
-        return this;
+        return checkDisk;
     }
 
-
-    public Disk getDisk() {
-
-        return disk;
-    }
-
-    public Pole setDisk(Disk disk) {
-        if(disk==null){
-            throw new IllegalArgumentException(
-                    "Disk must not be null!");
+    public boolean removeDisk(Disk disk) {
+        boolean checkDisk= disks.remove(disk);
+        if(checkDisk && disk!=null) {
+            disk.setPole(null);
         }
-        this.disk = disk;
-        return this;
+        return checkDisk;
     }
 
-    public int getPoleNumber() {
-        // return pole number
-        return poleNumber;
-    }
+    public Set<Disk> getDisk() {
+                return Collections.unmodifiableSet(disks);
+            }
 
-    public Pole setPoleNumber(int poleNumber) {
-        if(poleNumber<=0 ){
-            throw new IllegalArgumentException(
-                    "Pole number must not bigger than 0!");
+
+    public void setPlayer(Player player) {
+        if(this.player!=player){
+            Player oldPlayer= this.player;
+            this.player=player;
+            if(oldPlayer!= null){
+                oldPlayer.removePlayer(this);
+            }
+            if(player !=null){
+                player.addPlayer(this);
+            }
         }
-        this.poleNumber = poleNumber;
-        return this;
-    }
-
-    public boolean addDisk(Disk d){
-        // return the set of disks
-        return setOfDisk.add(d);
+        this.player = player;
     }
 
 }
