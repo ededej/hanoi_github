@@ -23,7 +23,7 @@ public class Pole {
         return checkDisk;
     }
 
-    public Set<Disk> getDisk() {
+    public Set<Disk> getDisks() {
                 return Collections.unmodifiableSet(disks);
             }
 
@@ -33,13 +33,12 @@ public class Pole {
             Player oldPlayer= this.player;
             this.player=player;
             if(oldPlayer!= null){
-                oldPlayer.removePlayer(this);
+                oldPlayer.removePole(this);
             }
             if(player !=null){
-                player.addPlayer(this);
+                player.addPole(this);
             }
         }
-        this.player = player;
     }
 
 }

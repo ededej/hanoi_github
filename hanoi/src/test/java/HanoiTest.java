@@ -8,24 +8,59 @@ import static org.junit.Assert.*;
 
 public class HanoiTest {
     Player john;
+    Pole one;
+    Pole two;
+    Pole three;
+    Disk dBlu;
+    Disk dRed;
+    Disk dYellow;
+    Disk dGreen;
 
     @Before
     public void setUpGame(){
-//        john= new Player();
-//        john.setName("John");
-//        john.setPolesSize(3);
-//        john.addDiskPole("Blue",1);
-//        john.addDiskPole("Red",1);
-//        john.addDiskPole("Yellow",1);
-//        john.addDiskPole("Green",1);
+        //creating player john and setting the name
+        john= new Player();
+        john.setName("John");
+        //setting the pole by adding the pole to the player and setting the to a player john
+        one= new Pole();
+        one.setPlayer(john);
+        john.addPole(one);
+
+        two= new Pole();
+        two.setPlayer(john);
+        john.addPole(two);
+
+        three= new Pole();
+        three.setPlayer(john);
+        john.addPole(three);
+        // setting the disk to a pole and pole has disk on it
+        dBlu=new Disk();
+        dBlu.setColor("blu");
+        dBlu.setPole(one);
+        one.addDisk(dBlu);
+
+        dRed=new Disk();
+        dRed.setColor("red");
+        dRed.setPole(one);
+        one.addDisk(dRed);
+
+        dYellow=new Disk();
+        dYellow.setColor("yellow");
+        dYellow.setPole(one);
+        one.addDisk(dYellow);
+
+        dGreen=new Disk();
+        dGreen.setColor("green");
+        dGreen.setPole(one);
+        one.addDisk(dYellow);
+
     }
 
     // 1. one showing a disc being moved once
     @Test
     public void johnMovesDiskOnce(){
-//        john.movesDisk("Green",2);
-//        Disk disk= john.findDisk("Green");
-//        assertTrue(disk.getPole()==2);
+        dGreen.move(two);
+        assertTrue(dGreen.getPole().equals(two));
     }
 
 // 2. and one showing a disc being moved to a wrong tower with a too small disc and the move being rejected.
