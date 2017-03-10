@@ -8,6 +8,16 @@ public class Disk {
     private Pole pole;
     private int size;
     private String color;
+    private Disk onTop;
+
+    public Disk getOnTop() {
+        return onTop;
+    }
+
+    public void setOnTop(Disk onTop) {
+        this.onTop = onTop;
+    }
+
 
     public String getColor() {
         return color;
@@ -20,10 +30,27 @@ public class Disk {
     //Disc:move(destination: Tower)
     public boolean move(Pole destinationPole){
         Set<Disk> disksOnDestination= destinationPole.getDisks();
+        boolean moved=false;
+        // if the list of the disk has size 0 than just put set the disk to that pole
+        if(disksOnDestination.size()==0){
+            this.setPole(destinationPole);
+            moved=true;
+        }else{// if we have other disks on that pole than do the checks.
+            for(Disk disk: disksOnDestination){
+                String colorOnTopCurrentDisk=this.getOnTop().getColor();
+                //if the color of the disks that can sit on top match the color of disk on the pole
+                // than move there.
+                if(colorOnTopCurrentDisk.equals(disk.getColor())){
+                    this.setPole(destinationPole);
+                    moved=true;
 
-        this.setPole(pole);
-        return false;
+                }
+            }
+        }
+
+        return moved;
     }
+
     public void setPole(Pole pole) {
         if(this.pole!=pole){
             Pole oldPole= this.pole;

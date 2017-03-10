@@ -43,32 +43,56 @@ public class HanoiTest {
         dRed.setColor("red");
         dRed.setPole(one);
         one.addDisk(dRed);
-
+        dRed.setOnTop(dBlu);
         dYellow=new Disk();
         dYellow.setColor("yellow");
         dYellow.setPole(one);
         one.addDisk(dYellow);
+        dYellow.setOnTop(dRed);
 
         dGreen=new Disk();
         dGreen.setColor("green");
         dGreen.setPole(one);
         one.addDisk(dYellow);
-
+        dGreen.setOnTop(dYellow);
     }
 
+    //The first three test just test the disk and pole methods
     // 1. one showing a disc being moved once
     @Test
-    public void johnMovesDiskOnce(){
-        dGreen.move(two);
+    public void movesDiskOnceToNewPole(){
+        assertTrue(dGreen.move(two));
         assertTrue(dGreen.getPole().equals(two));
     }
 
 // 2. and one showing a disc being moved to a wrong tower with a too small disc and the move being rejected.
     @Test
-    public void johnMovesBiggerDiskIntoAnotherPoleWithSmallerDisk(){
-//        john.movesDisk("Green",2);
-//        assertFalse(john.movesDisk("Yellow",2));
-
-
+    public void movesBiggerDiskIntoAnotherPoleWithSmallerDisk(){
+        dGreen.move(two);
+        assertFalse(dRed.move(two));
     }
+
+    @Test
+    public void diskMovesToAnotherWithBiggerDisk(){
+        dYellow.move(three);
+        assertTrue(dGreen.move(three));
+    }
+
+    //this test are testing with Player john that make the moves
+    @Test
+    public void johnMovesDiskOnceToNewPole() {
+        assertTrue(john.moveDiskToPole(dGreen,two));
+    }
+    @Test
+    public void johnMovesBiggerDiskIntoAnotherPoleWithSmallerDisk(){
+        john.moveDiskToPole(dGreen,two);
+        assertFalse(john.moveDiskToPole(dRed,two));
+    }
+    @Test
+    public void johnMovesDiskToAnothePoleWithBiggerDisk(){
+        dYellow.move(three);
+        john.moveDiskToPole(dYellow,three);
+        assertTrue(john.moveDiskToPole(dGreen,three));
+    }
+
 }

@@ -30,4 +30,12 @@ public class Player {
     {
         this.name=name;
     }
+
+
+    //this method just calls the move() method of the Disk class when player move the disk to a new pole
+    public boolean moveDiskToPole(Disk disk, Pole poleDestination) {
+        boolean check=false;
+        check=disk.move(poleDestination);
+        return check;
+    }
 }
