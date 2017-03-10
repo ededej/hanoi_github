@@ -26,7 +26,7 @@ public class Pole {
         return checkDisk;
     }
 
-    //return the set of disks on this pole
+    //return the immutable version the set of disks on this pole.
     public Set<Disk> getDisks() {
                 return Collections.unmodifiableSet(disks);
             }
