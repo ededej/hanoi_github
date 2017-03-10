@@ -1,7 +1,7 @@
 /**
  * Created by Shelby on 2/16/17.
  */
-import java.util.*;
+import java.util.*;                    
 
 public class Player {
     private Set<Pole> poles= new LinkedHashSet<Pole>();
@@ -26,8 +26,7 @@ public class Player {
     }
 
     public Set<Pole> getPoles() {
-        //return an immutable version of this.poles.
-        return Collections.unmodifiableSet(poles);
+        return Collections.unmodifiableSet(poles);          //return an immutable version of this.poles.
     }
 
 
